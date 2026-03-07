@@ -2,7 +2,7 @@
   "version": "5.0.0",
   "apkUrl": "https://github.com/hamza4app2vip/UPDATE_zinab/releases/download/1.0.0/58app-release.apk",
   "sizeBytes": 34571550,
-  "is_mandatory": false, 
+  "is_mandatory": true, 
   "auto_prompt": false,
   "changelog": [
     "تحسين استقرار فحص التحديث.",
