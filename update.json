@@ -3,7 +3,7 @@
   "apkUrl": "https://github.com/hamza4app2vip/UPDATE_zinab/releases/download/1.0.0/58app-release.apk",
   "sizeBytes": 34571550,
   "is_mandatory": false, 
-  "auto_prompt": true,
+  "auto_prompt": false,
   "changelog": [
     "تحسين استقرار فحص التحديث.",
     "إظهار الإصدار المثبت والإصدار الجديد قبل التثبيت.",
@@ -17,7 +17,7 @@
     "Full support for Arabic and English numeral formatting in all screens."
   ],
   "update_available": {
-    "title": "يتوفر تحديث جديد",
+    "title": "يتوفر تحديث تجرية",
     "message": "قم بتنزيل آخر إصدار للاستمرار في استخدام التطبيق مع أحدث التحسينات.",
     "title_en": "A new update is available",
     "message_en": "Download the latest release to keep the app up to date.",
