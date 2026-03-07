@@ -45,5 +45,5 @@
     ],
     "color": "#5C63F5"
   },
-  "auto_prompt": false
+  "auto_prompt": True
 }
