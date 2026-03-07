@@ -1,7 +1,7 @@
 {
     "version": "4.0.0",
-    "apkUrl": "https://github.com/hamza4app2vip/UPDATE_zinab/releases/download/1.0.0/58app-release.apk",
-    "sizeBytes": 34571550,
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/3.0/NOORV5_Test.apk",
+    "sizeBytes": 120586240,
     "is_mandatory": true,
     "show_update_ui": true,
     "allow_skip": true,
@@ -32,9 +32,10 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "إضافة خيار التحكم في ظهور التحديثات من قائمة التحكم عن بعد.",
+            "إضافة خيار التحكم في ظهور التحديث .",
             "تطوير نظام الأرقام ليشمل شاشات الأذان والإقامة.",
-            "إضافة واجهة قفل للتحديثات الإجبارية لضمان استقرار التطبيق."
+            "إضافة واجهة قفل للتحديثات الإجبارية لضمان استقرار التطبيق.",
+            "إضافة نظام متطور حقًا في التعرف على الإكسل"
         ],
         "items_en": [
             "Added option to control update visibility from remote control menu.",
