@@ -2,48 +2,42 @@
   "version": "4.0.0",
   "apkUrl": "https://github.com/hamza4app2vip/UPDATE_zinab/releases/download/1.0.0/58app-release.apk",
   "sizeBytes": 34571550,
+  "is_mandatory": true, 
+  "auto_prompt": true,
   "changelog": [
     "تحسين استقرار فحص التحديث.",
     "إظهار الإصدار المثبت والإصدار الجديد قبل التثبيت.",
-    "تنزيلات أكثر موثوقية ومعالجة أفضل للأخطاء."
+    "تنزيلات أكثر موثوقية ومعالجة أفضل للأخطاء.",
+    "دعم كامل لتنسيق الأرقام باللغة العربية والإنجليزية في كافة الشاشات."
   ],
   "changelog_en": [
     "Stability improvements for update checks.",
     "Shows installed and latest versions before installing.",
-    "More reliable downloads with better error handling."
+    "More reliable downloads with better error handling.",
+    "Full support for Arabic and English numeral formatting in all screens."
   ],
   "update_available": {
     "title": "يتوفر تحديث جديد",
     "message": "قم بتنزيل آخر إصدار للاستمرار في استخدام التطبيق مع أحدث التحسينات.",
     "title_en": "A new update is available",
-    "message_en": "Download the latest release to keep using the app with the newest improvements.",
-    "icon": "assets/images/logo.png",
-    "color": "#0F172A"
-  },
-  "app_usage": {
-    "title": "متابعة الاستخدام",
-    "message": "يمكنك متابعة استخدام التطبيق أثناء تنزيل التحديث دون التأثير على عملك.",
-    "title_en": "Keep using the app",
-    "message_en": "You can keep using the app while the update downloads."
+    "message_en": "Download the latest release to keep the app up to date.",
+    "color": "#DCB881",
+    "icon": "system_update_rounded"
   },
   "whats_new": {
-    "title": "ما الجديد!",
-    "message": "التغييرات في هذا الإصدار:",
+    "title": "ما الجديد في هذا الإصدار",
+    "message": "تحسينات شاملة في واجهة المستخدم وإصلاحات عامة.",
+    "title_en": "What's New",
+    "message_en": "Comprehensive UI improvements and general fixes.",
     "items": [
-      "تحسين سرعة واستقرار التحقق من التحديث.",
-      "إظهار الإصدار الحالي والجديد قبل التثبيت.",
-      "تنزيلات أكثر موثوقية وإدارة أفضل للأخطاء.",
-      "تجربة أفضل عند استئناف التنزيلات المتوقفة."
+      "إضافة خيار التحكم في ظهور التحديثات من قائمة التحكم عن بعد.",
+      "تطوير نظام الأرقام ليشمل شاشات الأذان والإقامة.",
+      "إضافة واجهة قفل للتحديثات الإجبارية لضمان استقرار التطبيق."
     ],
-    "title_en": "What's new!",
-    "message_en": "Changes in this release:",
     "items_en": [
-      "Faster and more stable update checks.",
-      "See installed vs latest versions before installing.",
-      "Improved download reliability and error handling.",
-      "Better experience when resuming interrupted downloads."
-    ],
-    "color": "#5C63F5"
-  },
-  "auto_prompt": True
+      "Added option to control update visibility from remote control menu.",
+      "Developed numeral system to include Adhan and Iqama screens.",
+      "Added locking interface for mandatory updates to ensure stability."
+    ]
+  }
 }
