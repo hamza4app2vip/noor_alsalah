@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم نور — التحكم عن بعد</title>
+    <link rel="stylesheet" href="remote.css">
+</head>
+
+<body>
+    <!-- Background Shapes -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header" id="main-header" style="display:none">
+        <div class="header-left">
+            <span class="status-dot" id="status-dot"></span>
+            <h2 class="header-title">لوحة تحكم نور</h2>
+            <span id="header-count" class="badge badge-gold" style="display:none"></span>
+        </div>
+        <div class="header-right">
+            <button class="btn-outline btn-logout" onclick="logout()">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013-3v1" />
+                </svg>
+                خروج
+            </button>
+        </div>
+    </div>
+
+
+    <!-- AUTH CONTAINER -->
+    <div class="auth-container" id="auth-container">
+        <div class="net-warn" id="net-warn">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span id="net-warn-msg">تأكد من الاتصال بنفس شبكة Wi-Fi مع الشاشة.</span>
+        </div>
+
+        <div class="pure-glass has-shine card">
+            <div style="text-align:center;margin-bottom:24px">
+                <h1 style="font-size: 24px;display:flex;align-items:center;justify-content:center;gap:8px">
+                    <svg fill="none" stroke="var(--gold)" viewBox="0 0 24 24" stroke-width="2"
+                        style="width:28px;height:28px;">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                    </svg>
+                    نور للمواقيت
+                </h1>
+                <p id="auth-subtitle" style="color:var(--sub);margin-top:8px;font-size:14px">لوحة تحكم شريط الأخبار</p>
+            </div>
+
+            <div class="auth-step active animate" id="step-login">
+                <div style="margin-bottom:16px">
+                    <label>اسم المستخدم</label>
+                    <input type="text" id="user-input" placeholder="admin">
+                </div>
+                <div style="margin-bottom:16px">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="pass-input" placeholder="••••••••"
+                        onkeydown="if(event.key==='Enter') requestLogin()">
+                </div>
+                <div style="margin-bottom:24px">
+                    <label>اسم جهازك (سوف يظهر على الشاشة)</label>
+                    <input type="text" id="device-input" placeholder="مثلاً: هاتف المشرف">
+                </div>
+                <div class="auth-wifi-note" data-wifi-note>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8.111 16.404a5 5 0 017.778 0M4.93 13.223a10 10 0 0114.14 0M1.757 10.05a15 15 0 0120.486 0M12 20h.01" />
+                    </svg>
+                    <span>تأكد من الاتصال بنفس شبكة Wi‑Fi مع الشاشة.</span>
+                </div>
+
+                <button class="btn-gold" style="width:100%" id="btn-login" onclick="requestLogin()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    </svg>
+                    تسجيل الدخول
+                </button>
+                <p id="auth-error-login"
+                    style="color:var(--danger);margin-top:16px;text-align:center;display:none;font-weight:700;font-size:14px">
+                </p>
+            </div>
+
+            <div class="auth-step animate" id="step-waiting">
+                <div style="text-align:center; padding: 20px 0;">
+                    <div class="spinner"></div>
+                    <h3 style="font-size: 18px; margin-bottom: 8px;">بانتظار الموافقة</h3>
+                    <p style="color: var(--sub); font-size: 14px; line-height: 1.5; margin-bottom: 24px;">
+                        يرجى تأكيد طلب الدخول من خلال الريموت كنترول على شاشة التلفاز.
+                    </p>
+                    <div class="auth-wifi-note" data-wifi-note>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.111 16.404a5 5 0 017.778 0M4.93 13.223a10 10 0 0114.14 0M1.757 10.05a15 15 0 0120.486 0M12 20h.01" />
+                        </svg>
+                        <span>حافظ على اتصال نفس شبكة Wi‑Fi حتى اكتمال الموافقة.</span>
+                    </div>
+                    <button class="btn-danger" style="width:100%" onclick="cancelLogin()">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        إلغاء الطلب
+                    </button>
+                    <p id="auth-error-wait"
+                        style="color:var(--danger);margin-top:16px;text-align:center;display:none;font-weight:700;font-size:14px">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BODY NAVIGATION -->
+    <div class="body-nav-wrap" id="body-nav-wrap" style="display:none">
+        <div class="body-nav pure-glass">
+            <button class="body-tab active" id="tab-news" onclick="switchPage('news')">
+                <span>الإعلانات</span>
+            </button>
+            <button class="body-tab" id="tab-settings" onclick="switchPage('settings')">
+                <span>برنامج الخشوع</span>
+            </button>
+            <button class="body-tab" id="tab-media" onclick="switchPage('media')">
+                <span>الخلفيات والأذان</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- NEWS PAGE -->
+    <div class="page" id="page-news">
+        <div id="news-list" class="animate"></div>
+
+        <div class="empty" id="news-empty" style="display:none;text-align:center;padding:80px 20px;color:var(--sub)">
+            <svg class="icon-lg" style="margin-bottom:16px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+            </svg>
+            <h3 style="margin-bottom:8px">لا توجد رسائل حالياً</h3>
+            <p>اضغط على زر الإضافة أدناه لإنشاء رسالتك الأولى</p>
+        </div>
+
+        <button class="fab" onclick="openAddModal()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:28px;height:28px">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- SETTINGS PAGE (Khushoo Program) -->
+    <div class="page" id="page-settings">
+        <div class="animate settings-shell">
+            <div class="pure-glass has-shine card">
+                <h3 class="settings-head-title" style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                    <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    الإعدادات المتقدمة (برنامج الخشوع)
+                </h3>
+                <p style="color:var(--sub);font-size:13px;line-height:1.5">
+                    نفس خيارات التطبيق في قسم الصوتيات والمنبهات، وتُطبَّق مباشرة على شاشة المواقيت.
+                </p>
+                <div class="khushoo-state-strip" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+                    <span class="mode-badge" id="status-khushoo-mode">الوضع التلقائي: غير مفعّل</span>
+                    <span class="mode-badge" id="status-khushoo-manual">التحكم اليدوي: غير مفعّل</span>
+                </div>
+            </div>
+
+            <div class="settings-grid">
+                <div class="pure-glass card settings-panel">
+                    <h4>التحكم في الصوت</h4>
+                    <div class="setting-row">
+                        <div class="setting-meta">
+                            <div class="setting-title">كتم الصوت العام</div>
+                            <div class="setting-sub">إيقاف جميع الأصوات في التطبيق</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="set-global-mute" onchange="updateLiveSettings()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <div class="setting-meta">
+                            <div class="setting-title">كتم إشعارات الأذان فقط</div>
+                            <div class="setting-sub">إيقاف صوت الأذان بشكل منفصل</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="set-azan-mute" onchange="updateLiveSettings()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pure-glass card settings-panel">
+                    <h4>برنامج الخشوع</h4>
+                    <div class="setting-row">
+                        <div class="setting-meta">
+                            <div class="setting-title">تفعيل الشاشة السوداء (بعد الأذان)</div>
+                            <div class="setting-sub">حجب الشاشة لعدم التشتيت بعد الأذان مباشرة</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="set-khushoo-enabled" onchange="updateLiveSettings()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div id="khushoo-duration-container"
+                        style="display:none; background:rgba(255,255,255,0.03); border-radius:12px; padding:12px; margin-top:10px">
+                        <div
+                            style="display:flex;justify-content:space-between;margin-bottom:12px;color:var(--sub);font-size:13px;font-weight:700">
+                            <span>مدة الشاشة السوداء</span>
+                            <span id="khushoo-dur-label" style="color:var(--gold);font-weight:800">10 دقيقة</span>
+                        </div>
+                        <input type="range" id="set-khushoo-duration" min="1" max="60" value="10"
+                            oninput="document.getElementById('khushoo-dur-label').textContent = Math.floor(this.value) + ' دقيقة'"
+                            onchange="updateLiveSettings()">
+                    </div>
+
+                    <div class="setting-row"
+                        style="margin-top:10px; border:1px dashed rgba(220,184,129,0.4); border-radius:12px; padding:14px; background:rgba(220,184,129,0.03)">
+                        <div class="setting-meta">
+                            <div class="setting-title" style="color:var(--gold)">تشغيل الشاشة السوداء يدوياً</div>
+                            <div class="setting-sub">تفعيل أو إلغاء فوري على شاشة المواقيت</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="set-khushoo-manual" onchange="updateLiveSettings()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pure-glass card settings-panel">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
+                        <h4>إدارة الشرائح (الصور والنصوص)</h4>
+                        <button class="btn-gold" style="padding:6px 12px;font-size:12px" onclick="openSlideModal()">
+                            إضافة شريحة
+                        </button>
+                    </div>
+
+                    <div class="setting-row">
+                        <div class="setting-meta">
+                            <div class="setting-title">تفعيل عرض الشرائح</div>
+                            <div class="setting-sub">عرض الصور أو النصوص المجدولة بشكل دوري</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="set-slides-enabled" onchange="updateLiveSettings()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div id="slides-config-container"
+                        style="display:none; margin-top: 14px; border-top: 1px dashed var(--border); padding-top: 14px;">
+                        <div class="setting-row">
+                            <div class="setting-meta">
+                                <div class="setting-title">تبديل عشوائي</div>
+                                <div class="setting-sub">عرض الشرائح بترتيب عشوائي</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="set-slides-shuffle" onchange="updateLiveSettings()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div style="margin:15px 0">
+                            <div
+                                style="display:flex;justify-content:space-between;margin-bottom:8px;color:var(--sub);font-size:12px">
+                                <span>مدة عرض الشريحة</span>
+                                <span id="slide-dur-label" style="color:var(--gold)">15 ثانية</span>
+                            </div>
+                            <input type="range" id="set-slide-duration" min="5" max="60" value="15"
+                                oninput="document.getElementById('slide-dur-label').textContent = this.value + ' ثانية'"
+                                onchange="updateLiveSettings()">
+                        </div>
+
+                        <div style="margin:15px 0">
+                            <div
+                                style="display:flex;justify-content:space-between;margin-bottom:8px;color:var(--sub);font-size:12px">
+                                <span>مدة شاشة المواقيت الأساسية</span>
+                                <span id="main-dur-label" style="color:var(--gold)">12 ثانية</span>
+                            </div>
+                            <input type="range" id="set-main-duration" min="5" max="60" value="12"
+                                oninput="document.getElementById('main-dur-label').textContent = this.value + ' ثانية'"
+                                onchange="updateLiveSettings()">
+                        </div>
+
+                        <div id="slides-mode-container" style="margin-top: 14px;">
+                            <label style="font-size:13px;font-weight:700">وضع عرض الشرائح</label>
+                            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+                                <button class="mode-badge" id="btn-slides-after-prayer"
+                                    onclick="setSlidesMode('AFTER_PRAYER')">بعد الصلاة</button>
+                                <button class="mode-badge" id="btn-slides-manual" onclick="setSlidesMode('MANUAL')">يدوي
+                                    الآن</button>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:20px">
+                            <label style="font-size:13px;font-weight:700;margin-bottom:10px;display:block">قائمة
+                                الشرائح</label>
+                            <div id="slides-list" style="max-height:300px;overflow-y:auto;padding-right:5px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px">
+                <span id="save-indicator" class="sync-indicator"></span>
+                <span id="save-error" style="display:none; color:var(--danger); font-size:12px; font-weight:700"></span>
+            </div>
+
+            <p style="text-align:center; color:var(--sub); font-size:12px">جميع التغييرات يتم تطبيقها فورًا وبشكل لحظي
+                على التطبيق.</p>
+        </div>
+    </div>
+
+    <!-- MEDIA PAGE (Backgrounds & Adhan) -->
+    <div class="page" id="page-media">
+        <div class="animate settings-shell">
+            <div class="pure-glass has-shine card">
+                <h3 class="settings-head-title" style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                    <svg class="icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    إدارة الخلفيات وأصوات الأذان
+                </h3>
+                <p style="color:var(--sub);font-size:13px;line-height:1.5">
+                    ارفع خلفيات جديدة أو أصوات أذان من هاتفك مباشرة إلى الشاشة.
+                </p>
+            </div>
+
+            <div class="settings-grid">
+                <div class="pure-glass card settings-panel">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                        <h4>الخلفيات</h4>
+                        <button class="btn-gold" style="padding:6px 12px;font-size:12px"
+                            onclick="document.getElementById('bg-file-input').click()">
+                            رفع خلفية
+                        </button>
+                        <input type="file" id="bg-file-input" style="display:none" accept="image/*"
+                            onchange="uploadBackground(this)">
+                    </div>
+                    <div class="progress-container" id="bg-progress-container" style="display:none">
+                        <div class="progress-fill" id="bg-progress-fill"></div>
+                    </div>
+                    <p id="bg-upload-status"
+                        style="font-size:12px;color:var(--gold);margin-top:5px;text-align:center;display:none"></p>
+                    <div id="bg-grid"
+                        style="display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:10px;margin-top:16px">
+                    </div>
+                    <p id="bg-empty"
+                        style="text-align:center;color:var(--sub);font-size:14px;padding:30px 0;display:none">لا توجد
+                        خلفيات مرفوعة بعد</p>
+                </div>
+
+                <div class="pure-glass card settings-panel">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                        <h4>أصوات الأذان</h4>
+                        <button class="btn-gold" style="padding:6px 12px;font-size:12px"
+                            onclick="document.getElementById('adhan-file-input').click()">
+                            رفع صوت أذان
+                        </button>
+                        <input type="file" id="adhan-file-input" style="display:none" accept="audio/*"
+                            onchange="uploadAdhan(this)">
+                    </div>
+                    <div class="progress-container" id="adhan-progress-container" style="display:none">
+                        <div class="progress-fill" id="adhan-progress-fill"></div>
+                    </div>
+                    <p id="adhan-upload-status"
+                        style="font-size:12px;color:var(--gold);margin-top:5px;text-align:center;display:none"></p>
+                    <div id="adhan-list" style="display:flex;flex-direction:column;gap:10px;margin-top:16px"></div>
+                    <p id="adhan-empty"
+                        style="text-align:center;color:var(--sub);font-size:14px;padding:30px 0;display:none">لا توجد
+                        أصوات أذان مرفوعة بعد</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NEWS -->
+    <div class="modal-overlay hidden" id="modal">
+        <div class="pure-glass modal animate">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px">
+                <h2 id="modal-title">إضافة إعلان جديد</h2>
+                <button onclick="closeModal()"
+                    style="background:rgba(255,255,255,0.05);padding:8px;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <input type="hidden" id="edit-id">
+
+            <div style="margin-bottom:20px">
+                <label>نص الإعلان</label>
+                <textarea id="news-text" rows="4" maxlength="2000" placeholder="اكتب نص الإعلان هنا..."></textarea>
+            </div>
+
+            <div style="display:flex;gap:15px;margin-bottom:20px">
+                <div style="flex:1">
+                    <label>الجدولة الدورية</label>
+                    <select id="news-schedule" onchange="onScheduleChange()">
+                        <option value="daily">عرض يومياً</option>
+                        <option value="jomoa">عرض الجمعة فقط</option>
+                        <option value="date">عرض في تاريخ محدد</option>
+                    </select>
+                </div>
+                <div style="flex:1;display:none" id="date-group">
+                    <label>التاريخ (يوم/شهر) مثلاً 25/12</label>
+                    <input type="text" id="news-date" placeholder="25/12">
+                </div>
+            </div>
+
+            <div style="margin-bottom:24px">
+                <label style="display:flex;justify-content:space-between">
+                    مدة العرض
+                    <span id="dur-label" style="color:var(--gold);font-weight:bold">يوم واحد</span>
+                </label>
+                <input type="range" id="news-duration" min="1" max="720" value="24"
+                    oninput="updateDurLabel(this.value)">
+                <div
+                    style="display:flex;justify-content:space-between;font-size:11px;color:var(--sub);margin-top:6px;padding:0 4px">
+                    <span>ساعة</span>
+                    <span>أسبوع</span>
+                    <span>شهر</span>
+                </div>
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:30px">
+                <button class="btn-outline" style="flex:1" onclick="closeModal()">إلغاء</button>
+                <button class="btn-gold" style="flex:2" onclick="saveNews()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    حفظ الإعلان
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SLIDE -->
+    <div class="modal-overlay hidden" id="modal-slide">
+        <div class="pure-glass modal animate">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+                <h2 id="slide-modal-title">إضافة شريحة جديدة</h2>
+                <button onclick="closeSlideModal()"
+                    style="background:rgba(255,255,255,0.05);padding:8px;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <input type="hidden" id="slide-edit-id">
+
+            <label>نوع الشريحة</label>
+            <div class="type-options"
+                style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px">
+                <div class="type-opt active mode-badge" id="opt-TEXT" onclick="setSlideType('TEXT')"
+                    style="justify-content:center;padding:10px">نص</div>
+                <div class="type-opt mode-badge" id="opt-FILE" onclick="setSlideType('FILE')"
+                    style="justify-content:center;padding:10px">صورة</div>
+                <div class="type-opt mode-badge" id="opt-LINK" onclick="setSlideType('LINK')"
+                    style="justify-content:center;padding:10px">رابط</div>
+            </div>
+
+            <div id="slide-content-text">
+                <label>محتوى النص</label>
+                <textarea id="slide-text" rows="4"
+                    placeholder="أدخل نص الشريحة هنا... (استخدم | لتقسيم الأسطر)"></textarea>
+            </div>
+
+            <div id="slide-content-file" style="display:none">
+                <label>اختيار صورة</label>
+                <button class="btn-outline" style="width:100%;padding:20px;border-style:dashed"
+                    onclick="document.getElementById('file-input').click()">
+                    <div id="file-name-label">اضغط لاختيار صورة من جهازك</div>
+                </button>
+                <input type="file" id="file-input" style="display:none" accept="image/*"
+                    onchange="onFileSelected(this)">
+                <div class="progress-container" id="upload-progress-container" style="display:none">
+                    <div class="progress-fill" id="upload-progress-fill"></div>
+                </div>
+                <p id="upload-status"
+                    style="font-size:12px;color:var(--gold);margin-top:5px;text-align:center;display:none"></p>
+            </div>
+
+            <div id="slide-content-link" style="display:none">
+                <label>رابط الصورة (URL)</label>
+                <input type="text" id="slide-link" placeholder="https://example.com/image.jpg"
+                    oninput="previewUrlImage(this.value)">
+                <div id="url-preview"
+                    style="margin-top:15px;border-radius:12px;overflow:hidden;background:rgba(0,0,0,0.2);display:none;height:120px;align-items:center;justify-content:center">
+                    <img id="url-preview-img" style="max-width:100%;max-height:100%;object-fit:contain">
+                </div>
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:30px">
+                <button class="btn-outline" style="flex:1" onclick="closeSlideModal()">إلغاء</button>
+                <button class="btn-gold" style="flex:2" id="btn-save-slide" onclick="saveSlide()">حفظ الشريحة</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="remote.js"></script>
+</body>
+
+</html>
+
+
