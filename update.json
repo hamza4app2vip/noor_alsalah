@@ -1,8 +1,8 @@
 {
-    "version": "4.0.0",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/4.0/NOORV4_Finel.apk",
-    "sizeBytes": 124570829,
-    "is_mandatory": true,
+    "version": "4.5.0",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/4.5/NoorV4.5Final.apk",
+    "sizeBytes": 125409690,
+    "is_mandatory": false,
     "show_update_ui": true,
     "allow_skip": true,
     "auto_prompt": false,
@@ -32,8 +32,12 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "اضافة خيار تواصل معنا جديد .",
-            "إصلاحات في كافة التطبيق"
+            "اضافة صفحة سجل التعديلات .",
+            "اضافة المظهر الزجاجي المتكامل في الثيمات",
+            "اضافة اعدادات متقدمة للأذكار",
+            "تحسينات وظيفية في كل الاعدادات",
+            " تحسينات في UI صفحة لوحة التحكم",
+            " تحسيانات واضافات في موقع الويب للتحكم عن يعد"     
         ],
         "items_en": [
             "Added option to control update visibility from remote control menu.",
