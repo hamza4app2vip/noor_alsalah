@@ -1,7 +1,7 @@
 {
-    "version": "4.6.0",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/4.6.0/noor.prayer.tv.4.6.0.apk",
-    "sizeBytes": 125934490,
+    "version": "4.7.0",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/4.7.0/noor.prayer.tv.4.7.0.apk",
+    "sizeBytes": 126626038,
     "is_mandatory": false,
     "show_update_ui": true,
     "allow_skip": true,
@@ -32,12 +32,11 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "اضاقة الساعة التناظرية .",
-            "اضافة 3 ثيمات للساعة التناظرية",
-            "اصلاحات في واجهة التطبيق",
-            "اصلاح الصفحات التي لا تدعم الريموت",
-            " اضافة صفحة الهوية والتنسيق للتحكم عن بعد",
-            "اضافة امكانية اختيار الساعة بـ ارقام او دون ارقام"     
+            " اضافة شاشة الساعة فقط.",
+            " اضافة شاشة الاذكار الكاملة ",
+            "اضافة خيارات تخصصية اكثر في التطبيق",
+            "تخصيص الخط اصبح متوفر الان",
+            "اصلاحات في كل التطبيق"
         ],
         "items_en": [
             "Added option to control update visibility from remote control menu.",
