@@ -1,7 +1,7 @@
 {
-    "version": "4.9.0",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/4.9.0/noor.prayer.tv.4.9.0.apk",
-    "sizeBytes": 126741381,
+    "version": "4.9.5",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/4.9.5/Noor.prayer.tv.4.9.5.apk",
+    "sizeBytes": 129331364,
     "is_mandatory": false,
     "show_update_ui": true,
     "allow_skip": true,
@@ -32,10 +32,10 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "اضافة خيارات جديدة",
-            " اضافة شرح للتطبيق ",
-            " تصحيح اخطاء في التطبيق",
-            "تخصيص الخط اصبح متوفر الان"
+            "تغير شكل الشريط العلوي في الاعدادات ",
+            "اضافة صفحة اشعارات من مطورين التطبيق",
+            "اضافة صفحة لغات للتطبيق واصبح يدعم الانجليزية ",
+            "اصلاحات في التطبيق بشكل عام"
             
         ],
         "items_en": [
