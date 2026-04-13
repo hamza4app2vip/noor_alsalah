@@ -1,7 +1,7 @@
 {
-    "version": "4.9.9",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/4.9.9/Noor.prayer.tv.4.9.9.apk",
-    "sizeBytes": 141201244,
+    "version": "5.1.0",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.1.0/Noor.prayer.tv.5.1.0.apk",
+    "sizeBytes": 134144328,
     "is_mandatory": false,
     "show_update_ui": true,
     "allow_skip": true,
@@ -32,9 +32,9 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "اضاقة ثيم جديد ",
-            "اضافة خيارات جديدة للتخصيص",
-            "اصلاحات في التطبيق بشكل عام "
+            "صفحة الخطوط اصبحت افضل من السابق وخطوط جديدة",
+            "خبارات جديدة في النماذج و التخطيط",
+            "اصلاحات متعددة في التطبيق بشكل عام "
             
         ],
         "items_en": [
