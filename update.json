@@ -1,7 +1,7 @@
 {
-    "version": "5.4.0",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.3.0/Noor.prayer.tv.5.4.0.apk",
-    "sizeBytes": 129830000,
+    "version": "5.4.3",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.4.3/Noor.prayer.tv.5.4.3.apk",
+    "sizeBytes": 136136622,
     "is_mandatory": false,
     "show_update_ui": true,
     "allow_skip": true,
@@ -32,7 +32,7 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "اضافة ريموت التحكم الالكتروني بالشاشة ",
+            "اضافة ميزة الاذان فوق التطبيقات الاخرى ",
             "اصلاح بعض المشاكل البسيطة"
             
             
