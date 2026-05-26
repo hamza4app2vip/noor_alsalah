@@ -1,6 +1,6 @@
 {
-    "version": "5.4.3",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.4.3/Noor.prayer.tv.5.4.3.apk",
+    "version": "5.4.4",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.4.4/Noor.prayer.tv.5.4.4.apk",
     "sizeBytes": 136136622,
     "is_mandatory": false,
     "show_update_ui": true,
@@ -33,6 +33,7 @@
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
             "اضافة ميزة الاذان فوق التطبيقات الاخرى ",
+            " تم اضافة اللغة الإندونيسيا",
             "اصلاح بعض المشاكل البسيطة"
             
             
