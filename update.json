@@ -1,7 +1,7 @@
 {
-    "version": "5.4.4",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.4.5/Noor.prayer.tv.5.4.5.apk",
-    "sizeBytes": 136136622,
+    "version": "5.6.0",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.6.0/Noor.prayer.tv.5.6.0.apk",
+    "sizeBytes": 136157148,
     "is_mandatory": false,
     "show_update_ui": true,
     "allow_skip": true,
@@ -32,8 +32,8 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "اضافة ميزة الاذان فوق التطبيقات الاخرى ",
-            " تم اضافة اللغة الإندونيسيا",
+            "ساعة رقمية جديدة بحجم كبير",
+            "اعادة ترتيب الثيم الكلاسيكي الازرق",
             "اصلاح بعض المشاكل البسيطة"
             
             
