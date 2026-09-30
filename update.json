@@ -1,6 +1,6 @@
 {
-    "version": "5.8.5",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.7.5/Nour.backgrounds.Verion.5.8.5.apk",
+    "version": "5.9.0",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.9.0/com.noor_prayer_tv_5.9.0.apk",
     "sizeBytes": 135759135,
     "is_mandatory": false,
     "show_update_ui": true,
@@ -32,8 +32,8 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "تم اضافة متجر خلفيات للتطبيق",
-            "تم اضافة ميزة الاذان فوق التطبيقات الاخرى",
+            "تم دعم دولة الصين في متجر الخلفيات",
+            "تم اضافة ميزة تخزين الخلفيات بدون انترنت يعد تحميلها",
             "اصلاح بعض المشاكل البسيطة"
             
             
