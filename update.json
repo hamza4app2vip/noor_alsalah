@@ -1,7 +1,7 @@
 {
-    "version": "5.9.0",
-    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.9.0/com.noor_prayer_tv_5.9.0.apk",
-    "sizeBytes": 135759135,
+    "version": "6.0.0",
+    "apkUrl": "https://github.com/hamza4app2vip/noor_alsalah/releases/download/5.9.0/com.noor_prayer_tv_6.0.0.apk",
+    "sizeBytes": 149759135,
     "is_mandatory": false,
     "show_update_ui": true,
     "allow_skip": true,
@@ -32,8 +32,9 @@
         "title_en": "What's New",
         "message_en": "Comprehensive UI improvements and general fixes.",
         "items": [
-            "تم دعم دولة الصين في متجر الخلفيات",
-            "تم اضافة ميزة تخزين الخلفيات بدون انترنت يعد تحميلها",
+            "تم اعادة تصميم صفحة اختيار اللغة",
+            "تم اضافة 3 لغات جديدة للتطبيق",
+             "تم اضافة المذاهب ومواقيتها",
             "اصلاح بعض المشاكل البسيطة"
             
             
